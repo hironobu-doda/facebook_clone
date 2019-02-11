@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190209130743) do
+ActiveRecord::Schema.define(version: 20190211015222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blogs", force: :cascade do |t|
-    t.string "title"
+    t.text "title"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text "image"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "feeds", force: :cascade do |t|
@@ -37,4 +38,5 @@ ActiveRecord::Schema.define(version: 20190209130743) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "blogs", "users"
 end
