@@ -12,7 +12,9 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @blog.image.url %>
+  <% if @blog.image.url %>
+      <li><%= image_tag @blog.image.url %></li>
+  <% end %>
 </p>
 
 <%= link_to '編集', edit_blog_path(@blog) %> |

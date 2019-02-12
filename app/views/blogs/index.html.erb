@@ -1,32 +1,45 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>投稿</h1>
+  <h1>投稿</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>内容</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= link_to '新しく投稿する', new_blog_path %>
 
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.content %></td>
-        <td><%= blog.user.name %></td>
-        <td><%= image_tag blog.image.url %></td>
+  <table>
+    <thead>
+      <!-- <tr>
+        <th>タイトル</th>
+        <th>内容</th>
+        <th colspan="3"></th>
+      </tr> -->
+    </thead>
 
-        <td><%= link_to '確認', blog %></td>
-        <td><%= link_to '編集', edit_blog_path(blog) %></td>
-        <td><%= link_to '削除', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @blogs.each do |blog| %>
 
-<br>
+        <div class="row">
+          <div class="col-sm-offset-3 col-sm-6">
 
-<%= link_to '新しく投稿する', new_blog_path %>
+            <ul class="row row2">
+              <li>投稿者：<%= blog.user.name %></li>
+              <li>タイトル：<%= blog.title %></li>
+              <li><%= blog.content %></li>
+              <% if blog.image.url %>
+                  <li><%= image_tag blog.image.url %></li>
+              <% end %>
+
+              <li class="col-xs-4"><%= link_to '確認', blog %></li>
+              <li class="col-xs-4"><%= link_to '編集', edit_blog_path(blog) %></li>
+              <li class="col-xs-4"><%= link_to '削除', blog, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+
+          </div>
+        </div>
+
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+</div>
