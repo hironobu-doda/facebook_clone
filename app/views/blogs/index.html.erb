@@ -28,9 +28,11 @@
                   <li><%= image_tag (blog.image.url) %></li>
               <% end %>
 
-              <li class="col-xs-4"><%= link_to '確認', blog %></li>
-              <li class="col-xs-4"><%= link_to '編集', edit_blog_path(blog) %></li>
-              <li class="col-xs-4"><%= link_to '削除', blog, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <% if @blog.user_id == blog.user.id %>
+                <li class="col-xs-4"><%= link_to '確認', blog %></li>
+                <li class="col-xs-4"><%= link_to '編集', edit_blog_path(blog) %></li>
+                <li class="col-xs-4"><%= link_to '削除', blog, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
             </ul>
 
           </div>

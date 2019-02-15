@@ -7,6 +7,7 @@ class BlogsController < ApplicationController
   def index
     @blogs = Blog.all
     @blog = Blog.last
+    @blog.user_id = current_user.id
   end
 
   # GET /blogs/1
@@ -74,6 +75,7 @@ class BlogsController < ApplicationController
   end
 
   private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
       @blog = Blog.find(params[:id])
